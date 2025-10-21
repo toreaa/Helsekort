@@ -101,7 +101,7 @@ export default function CurvesPage() {
                   label={{ value: 'Dato', position: 'insideBottom', offset: -5 }}
                 />
                 <YAxis
-                  label={{ value: 'Vekt (kg)', angle: -90, position: 'insideLeft' }}
+                  label={{ value: 'Vekt (kg)', angle: -90, position: 'center' }}
                   domain={['dataMin - 2', 'dataMax + 2']}
                 />
                 <Tooltip
@@ -160,7 +160,7 @@ export default function CurvesPage() {
                   label={{ value: 'Dato', position: 'insideBottom', offset: -5 }}
                 />
                 <YAxis
-                  label={{ value: 'Blodtrykk (mmHg)', angle: -90, position: 'insideLeft' }}
+                  label={{ value: 'Blodtrykk (mmHg)', angle: -90, position: 'center' }}
                   domain={[60, 180]}
                 />
                 <Tooltip
