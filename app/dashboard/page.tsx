@@ -177,6 +177,14 @@ export default function DashboardPage() {
           </Link>
 
           <Link
+            href="/dashboard/kurver"
+            className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+          >
+            <h3 className="font-semibold text-lg mb-2">Kurver</h3>
+            <p className="text-sm text-gray-600">Vekt og blodtrykk</p>
+          </Link>
+
+          <Link
             href="/dashboard/ultralyd"
             className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
