@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { signIn } from '@/utils/auth';
+import { requestPasswordReset } from '@/utils/password-reset';
 import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
@@ -9,11 +10,13 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
     setLoading(true);
 
     try {
@@ -22,6 +25,26 @@ export default function LoginForm() {
       router.refresh();
     } catch (err: any) {
       setError(err.message || 'Innlogging feilet');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError('Vennligst skriv inn e-postadressen din først');
+      return;
+    }
+
+    setError('');
+    setSuccess('');
+    setLoading(true);
+
+    try {
+      await requestPasswordReset(email);
+      setSuccess('Tilbakestillingslenke er sendt til ' + email);
+    } catch (err: any) {
+      setError(err.message || 'Kunne ikke sende tilbakestillingslenke');
     } finally {
       setLoading(false);
     }
@@ -63,12 +86,27 @@ export default function LoginForm() {
         </div>
       )}
 
+      {success && (
+        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+          {success}
+        </div>
+      )}
+
       <button
         type="submit"
         disabled={loading}
         className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
         {loading ? 'Logger inn...' : 'Logg inn'}
+      </button>
+
+      <button
+        type="button"
+        onClick={handleForgotPassword}
+        disabled={loading}
+        className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 disabled:bg-gray-50 disabled:cursor-not-allowed"
+      >
+        Glemt passord?
       </button>
     </form>
   );
