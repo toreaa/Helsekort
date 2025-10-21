@@ -16,7 +16,13 @@ export default function LoginPage() {
 
         <LoginForm />
 
-        <div className="mt-6 text-center">
+        <div className="mt-4 text-center">
+          <Link href="/auth/forgot-password" className="text-sm text-blue-600 hover:underline">
+            Glemt passord?
+          </Link>
+        </div>
+
+        <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Har du ikke konto?{' '}
             <Link href="/auth/signup" className="text-blue-600 hover:underline">
