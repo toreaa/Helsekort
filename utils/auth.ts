@@ -13,21 +13,7 @@ export async function signUp(email: string, password: string, fullName: string) 
 
   if (error) throw error;
 
-  // Create profile
-  if (data.user) {
-    const { error: profileError } = await supabase
-      .from('profiles')
-      .insert([
-        {
-          id: data.user.id,
-          email: data.user.email!,
-          full_name: fullName,
-        },
-      ]);
-
-    if (profileError) throw profileError;
-  }
-
+  // Profile is automatically created by database trigger
   return data;
 }
 
