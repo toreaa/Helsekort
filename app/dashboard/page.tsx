@@ -88,12 +88,20 @@ export default function DashboardPage() {
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">Helsekort for gravide</h1>
-          <button
-            onClick={handleSignOut}
-            className="text-gray-600 hover:text-gray-900"
-          >
-            Logg ut
-          </button>
+          <div className="flex gap-4 items-center">
+            <Link
+              href="/dashboard/endre-passord"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              Endre passord
+            </Link>
+            <button
+              onClick={handleSignOut}
+              className="text-gray-600 hover:text-gray-900"
+            >
+              Logg ut
+            </button>
+          </div>
         </div>
       </header>
 
